@@ -1,0 +1,6 @@
+{
+  "name": "Flags War Arena",
+  "description": "Physics-driven country flag battle royale arena where flags collide inside a rotating obstacle ring until the last flag standing wins.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

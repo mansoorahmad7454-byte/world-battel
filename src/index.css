@@ -1,0 +1,234 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html,
+  body {
+    background-color: #060918;
+    color: #f8fafc;
+    font-family: var(--font-sans);
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes flagPopIn {
+  0% {
+    transform: scale(0.45);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.14);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-flag-pop {
+  animation: flagPopIn 220ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.vortexia-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.vortexia-split-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 0.85rem;
+  align-items: stretch;
+  flex: 1 1 0%;
+  min-height: 0;
+}
+
+.vortexia-main-canvas-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vortexia-canvas-frame {
+  width: min(100%, calc((100dvh - 135px) * 16 / 9));
+  aspect-ratio: 16 / 9;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vortexia-aside-panel {
+  width: 100%;
+  max-height: calc(100dvh - 82px);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.vortexia-warmap-canvas-box {
+  flex: 1 1 0%;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vortexia-warmap-frame {
+  width: min(100%, calc((100dvh - 150px) * 16 / 9));
+  aspect-ratio: 16 / 9;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vortexia-warmap-rail {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.vortexia-portrait-only {
+  display: none;
+}
+
+.vortexia-desktop-only {
+  display: flex;
+}
+
+.vortexia-arena-box {
+  width: min(100%, calc(100dvh - 135px), 540px);
+}
+
+.vortexia-pip-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.vortexia-pip-box {
+  width: 100%;
+}
+
+@media (min-width: 680px) and (max-width: 1080px) and (min-aspect-ratio: 1/1) {
+  .vortexia-split-grid {
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 0.65rem;
+  }
+}
+
+/* True 9:16 Full-Screen Ratio Container (active automatically on Portrait/Mobile OR manually on Desktop via Screen Ratio -> 9:16) */
+.vortexia-916-backdrop {
+  width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  background-color: #030510;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.vortexia-916-backdrop > .vortexia-shell {
+  width: min(100vw, calc(100dvh * 9 / 16));
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  border-left: 1px solid rgba(51, 65, 85, 0.5);
+  border-right: 1px solid rgba(51, 65, 85, 0.5);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.85);
+}
+
+.vortexia-916-backdrop .vortexia-split-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.4rem;
+  flex: 1 1 0%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.vortexia-916-backdrop .vortexia-main-canvas-box {
+  width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vortexia-916-backdrop .vortexia-canvas-frame {
+  width: min(100%, calc(46dvh * 1.17));
+  max-height: 46dvh;
+}
+
+.vortexia-916-backdrop .vortexia-canvas-frame.vortexia-canvas-compact {
+  width: min(100%, calc(34dvh * 1.36));
+  max-height: 34dvh;
+}
+
+.vortexia-916-backdrop .vortexia-aside-panel {
+  width: 100%;
+  flex: 1 1 0%;
+  min-height: 0;
+  max-height: none;
+  overflow: hidden;
+}
+
+.vortexia-916-backdrop .vortexia-pip-row {
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0.4rem;
+}
+
+.vortexia-916-backdrop .vortexia-pip-box {
+  width: 50%;
+  max-width: 220px;
+}
+
+.vortexia-916-backdrop .vortexia-warmap-canvas-box {
+  flex: 1 1 0%;
+  min-height: 0;
+  width: 100%;
+}
+
+.vortexia-916-backdrop .vortexia-warmap-frame {
+  width: min(100%, calc(56dvh * 920 / 860));
+  max-height: 56dvh;
+}
+
+.vortexia-916-backdrop .vortexia-warmap-rail {
+  position: static;
+  transform: none;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.3rem;
+  width: 100%;
+}
+
+.vortexia-916-backdrop .vortexia-portrait-only {
+  display: flex;
+}
+
+.vortexia-916-backdrop .vortexia-desktop-only {
+  display: none;
+}
+
+.vortexia-916-backdrop .vortexia-arena-box {
+  width: min(94%, 56dvh);
+}
